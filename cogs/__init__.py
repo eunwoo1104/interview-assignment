@@ -5,4 +5,4 @@ if TYPE_CHECKING:
 
 
 def load(bot: "Bot") -> None:
-    bot.load_extension("cogs.example")
+    bot.load_extension("cogs.review")

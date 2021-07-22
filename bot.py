@@ -3,10 +3,13 @@ import os
 
 import cogs
 
+from module import SubmitManager
+
 
 class Bot(commands.Bot):
     def __init__(self, **kwargs):
         super().__init__(command_prefix="!", help_command=None, **kwargs)
+        self.submit_manager = SubmitManager()
         
         cogs.load(self)
 
