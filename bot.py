@@ -17,7 +17,6 @@ class Bot(commands.Bot):
         print(f"Logged in as {self.user.name}")
 
     async def on_command_error(self, ctx: commands.Context, exception: Exception):
-        print(type(exception))
         if isinstance(exception, commands.CommandNotFound):
             return
         if isinstance(exception, commands.BadArgument):
