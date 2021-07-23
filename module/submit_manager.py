@@ -1,12 +1,18 @@
 from contextlib import suppress
-from typing import Dict, Optional, Union
+from typing import Dict, Optional, Union, List
 from submits import submits, approved_submits, Bot
 
 
 class SubmitManager:
+    """
+    봇 신청 매니저 입니다.
+
+    :ivar submits: 승인 대기중인 봇 리스트.
+    :ivar approved_submits: 승인된 봇 리스트.
+    """
     def __init__(self):
-        self.submits = submits
-        self.approved_submits = approved_submits
+        self.submits: List[Bot] = submits
+        self.approved_submits: List[Bot] = approved_submits
 
     def get_submits(self) -> Dict[int, Bot]:
         """
