@@ -17,10 +17,13 @@ class Bot(commands.Bot):
         print(f"Logged in as {self.user.name}")
 
     async def on_command_error(self, ctx: commands.Context, exception: Exception):
+        print(type(exception))
         if isinstance(exception, commands.CommandNotFound):
             return
+        if isinstance(exception, commands.BadArgument):
+            return await ctx.reply(f"⚠ 잘못된 값이 주어졌습니다.")
         
-        return await ctx.send(f"Error: {exception}")
+        return await ctx.reply(f"Error: {exception}")
 
     
 if __name__ == '__main__':
