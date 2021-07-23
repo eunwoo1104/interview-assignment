@@ -1,5 +1,7 @@
+import datetime
 from discord.ext import commands
 from typing import TYPE_CHECKING, Optional
+from module import to_timeformat
 
 if TYPE_CHECKING:
     from bot import Bot
@@ -19,13 +21,13 @@ class Review(commands.Cog):
             return await ctx.reply("⚠ 잘못된 `query` 값입니다. `query`는 1 이상이어야 합니다.")
         if not query:
             subs = self.bot.submit_manager.get_submits()
-            return await ctx.reply(f"TODOs: {len(subs)}\n\n"+'\n'.join([f"#{i+1}: `{x.id}`" for i, x in enumerate(subs.values())]))
+            return await ctx.reply(f"TODOs: 총 {len(subs)}개\n\n"+'\n'.join([f"#{i+1}: `{x.id}`" for i, x in enumerate(subs.values())]))
         bot = self.bot.submit_manager.get_submit(query)
         if not bot:
             return await ctx.reply("⚠ 해당 봇은 존재하지 않습니다.")
         oauth2 = f"https://discord.com/oauth2/authorize?client_id={bot.id}&scope=bot&permissions=0&guild_id=653083797763522580&disable_guild_select=true"
         await ctx.reply(f"TODO: `{bot.id}`\n"
-                        f"Date: <t:{bot.date}>\n"
+                        f"Date: {to_timeformat(datetime.datetime.fromtimestamp(bot.date))}\n"
                         f"Invite: {oauth2}")
 
     @commands.command(name="approve")
