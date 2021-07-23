@@ -17,6 +17,7 @@ class SubmitManager:
     def get_submits(self) -> Dict[int, Bot]:
         """
         봇 신청 리스트를 ID: Bot 형식의 dict로 반환합니다.
+
         :return: Dict[int, submits.Bot]
         """
         return {x.id: x for x in self.submits}
@@ -28,7 +29,7 @@ class SubmitManager:
         :param query: 봇 ID 또는 신청 순서.
         :param safe: 봇이 존재하지 않는 경우, 이 값이 ``True``일 경우에는 ``None``을 반환하고, ``False``인 경우에는 예외를 발생시킵니다.
         :return: Optional[submits.Bot]
-        :raises: KeyError - 봇이 존재하지 않습니다.
+        :raises KeyError: 봇이 존재하지 않습니다.
         """
         subs = self.get_submits()
         if query not in subs:
@@ -46,6 +47,7 @@ class SubmitManager:
         """
         SubmitManager 내부 전용 함수입니다. 봇 신청 리스트에서 해당 봇을 삭제합니다. 봇이 존재하지 않다면 ``None``을 반환하고,
         삭제에 성공했다면 해당 봇을 반환합니다.
+        
         :return: Optional[submits.Bot]
         """
         if isinstance(query, Bot):
@@ -64,7 +66,7 @@ class SubmitManager:
         :param query: 봇 ID 또는 봇 객체.
         :param safe: 봇이 존재하지 않는 경우, 이 값이 ``True``일 경우에는 ``None``을 반환하고, ``False``인 경우에는 예외를 발생시킵니다.
         :return: Optional[submits.Bot]
-        :raises: KeyError - 봇이 존재하지 않습니다.
+        :raises KeyError: 봇이 존재하지 않습니다.
         """
         if isinstance(query, Bot):
             query = query.id
@@ -84,7 +86,7 @@ class SubmitManager:
         :param query: 봇 ID 또는 봇 객체.
         :param safe: 봇이 존재하지 않는 경우, 이 값이 ``True``일 경우에는 ``None``을 반환하고, ``False``인 경우에는 예외를 발생시킵니다.
         :return: Optional[submits.Bot]
-        :raises: KeyError - 봇이 존재하지 않습니다.
+        :raises KeyError: 봇이 존재하지 않습니다.
         """
         if isinstance(query, Bot):
             query = query.id
